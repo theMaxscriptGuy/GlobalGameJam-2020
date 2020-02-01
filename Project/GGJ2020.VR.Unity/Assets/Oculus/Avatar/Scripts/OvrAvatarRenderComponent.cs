@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -9,35 +9,16 @@ public class OvrAvatarRenderComponent : MonoBehaviour {
     private bool firstSkinnedUpdate = true;
     public SkinnedMeshRenderer mesh;
     public Transform[] bones;
-    bool isBodyComponent = false;
 
     protected void UpdateActive(OvrAvatar avatar, ovrAvatarVisibilityFlags mask)
     {
-        bool doActiveHack = isBodyComponent && avatar.EnableExpressive && avatar.ShowFirstPerson && !avatar.ShowThirdPerson;
-        if (doActiveHack)
-        {
-            bool showFirstPerson = (mask & ovrAvatarVisibilityFlags.FirstPerson) != 0;
-            bool showThirdPerson = (mask & ovrAvatarVisibilityFlags.ThirdPerson) != 0;
-            gameObject.SetActive(showThirdPerson || showThirdPerson);
-
-            if (!showFirstPerson)
-            {
-                mesh.enabled = false;
-            }
-        }
-        else
-        {
-            bool active = avatar.ShowFirstPerson && (mask & ovrAvatarVisibilityFlags.FirstPerson) != 0;
-            active |= avatar.ShowThirdPerson && (mask & ovrAvatarVisibilityFlags.ThirdPerson) != 0;
-            this.gameObject.SetActive(active);
-            mesh.enabled = active;
-        }
+        bool active = avatar.ShowFirstPerson && (mask & ovrAvatarVisibilityFlags.FirstPerson) != 0;
+        active |= avatar.ShowThirdPerson && (mask & ovrAvatarVisibilityFlags.ThirdPerson) != 0;
+        this.gameObject.SetActive(active);
     }
 
-    protected SkinnedMeshRenderer CreateSkinnedMesh(ulong assetID, ovrAvatarVisibilityFlags visibilityMask, int thirdPersonLayer, int firstPersonLayer)
+    protected SkinnedMeshRenderer CreateSkinnedMesh(ulong assetID, ovrAvatarVisibilityFlags visibilityMask, int thirdPersonLayer, int firstPersonLayer, int sortingOrder)
     {
-        isBodyComponent = name.Contains("body");
-
         OvrAvatarAssetMesh meshAsset = (OvrAvatarAssetMesh)OvrAvatarSDKManager.Instance.GetAsset(assetID);
         if (meshAsset == null)
         {
@@ -52,19 +33,13 @@ public class OvrAvatarRenderComponent : MonoBehaviour {
             this.gameObject.layer = firstPersonLayer;
         }
         SkinnedMeshRenderer renderer = meshAsset.CreateSkinnedMeshRendererOnObject(gameObject);
-#if UNITY_ANDROID
-        renderer.quality = SkinQuality.Bone2;
-#else
         renderer.quality = SkinQuality.Bone4;
-#endif
+        renderer.sortingOrder = sortingOrder;
         renderer.updateWhenOffscreen = true;
         if ((visibilityMask & ovrAvatarVisibilityFlags.SelfOccluding) == 0)
         {
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }
-
-        gameObject.SetActive(false);
-
         return renderer;
     }
 
@@ -116,7 +91,6 @@ public class OvrAvatarRenderComponent : MonoBehaviour {
                 OvrAvatar.ConvertTransform(transform, targetBone);
             }
         }
-
         firstSkinnedUpdate = false;
     }
 

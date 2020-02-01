@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +25,7 @@ public class PlayerController : SocialPlatformManager
     // Use this for initialization
     public override void Start()
     {
+        OVRManager.instance.trackingOriginType = OVRManager.TrackingOrigin.EyeLevel;
         base.Start();
         spyCamera.enabled = false;
     }
