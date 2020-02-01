@@ -23,7 +23,8 @@ public class LevelManager : Singleton<LevelManager>
         if (levelIndex != 0 && currentLevel != levelIndex)
         {
             Debug.Log($"Loading Level {levelIndex}");
-            SceneManager.UnloadSceneAsync(levelIndex);
+            if (currentLevel != 0)
+                SceneManager.UnloadSceneAsync(levelIndex);
             SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
             currentLevel = levelIndex;
         }

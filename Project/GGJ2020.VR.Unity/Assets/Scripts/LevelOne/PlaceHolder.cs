@@ -22,7 +22,7 @@ public class PlaceHolder : MonoBehaviour
     {
         Debug.Log("TRIGGER");
         Piece p = other.transform.GetComponent<Piece>();
-        if (p.id == m_id)
+        if (p?.id == m_id)
         {
             //place the tranform here:
             p.transform.position = transform.position;
