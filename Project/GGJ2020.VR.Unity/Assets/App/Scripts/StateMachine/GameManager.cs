@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManger : Singleton<GameManger>
 {
-    [HideInInspector]
+    
     public BaseState currentAppState;
     private BaseState previousState;
 
@@ -17,14 +17,14 @@ public class GameManger : Singleton<GameManger>
     // Use this for initialization
     void Start()
     {
-        previousState = null;
+      //  previousState = null;
     }
 
     public void SwitchState(BaseState newState)
     {
-        if (previousState != null)
+        if (currentAppState != null)
         {
-            previousState.OnExit();
+            currentAppState.OnExit();
         }
         previousState = currentAppState;
         currentAppState = newState;

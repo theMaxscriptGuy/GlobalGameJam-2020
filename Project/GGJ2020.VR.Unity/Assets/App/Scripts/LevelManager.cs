@@ -33,4 +33,14 @@ public class LevelManager : Singleton<LevelManager>
             Debug.Log($"Can't load level {levelIndex}");
         }
     }
+
+    public void UnLoadLevel(int levelIndex)
+    {
+        if (levelIndex != 0 )
+        {
+            currentLevel = 0;
+            SceneManager.UnloadSceneAsync(levelIndex);
+        }
+        
+    }
 }

@@ -20,9 +20,11 @@ public class PlaceHolder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TRIGGER");
+        //Debug.Log("TRIGGER");
         Piece p = other.transform.GetComponent<Piece>();
-        if (p?.id == m_id)
+        if (!p)
+            return;
+        if (p.id == m_id)
         {
             //place the tranform here:
             p.transform.position = transform.position;

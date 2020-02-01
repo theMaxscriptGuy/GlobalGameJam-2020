@@ -19,6 +19,7 @@ public class Level1Validation : MonoBehaviour
             Debug.Log($"All Pieces Collected!");
 
             OnLevelComplete?.Invoke();
+            AppManager.Instance.SwitchState(AppStartedState.Instance);
         }
     }
     // Start is called before the first frame update

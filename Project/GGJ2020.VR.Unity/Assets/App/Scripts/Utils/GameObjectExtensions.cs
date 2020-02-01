@@ -8,6 +8,7 @@ public static class GameObjectExtensions
     {
         foreach (GameObject go in gameObjects)
         {
+            Debug.Log($" Object:  {go.name} {(flag ? "Enabled":"Disabled")}");
             go.SetActive(flag);
         }
     }
