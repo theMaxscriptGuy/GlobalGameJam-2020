@@ -14,12 +14,16 @@ public class LitUp : MonoBehaviour
     [SerializeField]
     private float m_speed;
 
+    [SerializeField]
+    private GameObject highlight;
+
     private bool switchOnLights = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!switchOnLights)
         {
+            highlight.SetActive(false);
             switchOnLights = true;
             foreach (Light l in m_lights)
             {

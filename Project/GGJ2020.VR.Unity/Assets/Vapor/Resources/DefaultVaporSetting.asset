@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefaultVaporSetting
   m_EditorClassIdentifier: 
   Albedo: {r: 0.44766435, g: 0.7303276, b: 0.8455882, a: 1}
-  Extinction: 4
+  Extinction: 0.001
   Emissive: {r: 0, g: 0, b: 0, a: 1}
   AmbientLight: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 0.89218026}
   HeightGradient:

@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimateDissolveShader : MonoBehaviour
+public class AnimateLight : MonoBehaviour
 {
     [SerializeField]
     private float speed = 0.01f;
-    private Material mat;
+    private Light mat;
     // Start is called before the first frame update
     void Start()
     {
-        mat = GetComponent<Renderer>().material;
+        mat = GetComponent<Light>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        mat.SetFloat("_DissolveAmount", Mathf.PingPong(Time.time * speed, 0.5f));
+        mat.intensity = Mathf.PingPong(Time.time, 1f) * 10;
     }
 }
