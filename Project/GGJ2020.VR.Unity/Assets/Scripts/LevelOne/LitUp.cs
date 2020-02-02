@@ -15,40 +15,26 @@ public class LitUp : MonoBehaviour
     private float m_speed;
 
     private bool switchOnLights = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        //m_lights = (GetComponentsInChildren<Light>()).ToList().Where(o=>o.type == LightType.Point).ToList();
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if(Input.GetKeyUp(KeyCode.Space))
+        if (!switchOnLights)
         {
             switchOnLights = true;
-        }
-        if(switchOnLights)
-        {
-            if(m_lights.Count == 0)
-            {
-                switchOnLights = false;
-            }
             foreach (Light l in m_lights)
             {
-                LightsOn(l);
+                l.gameObject.SetActive(true);
+                StartCoroutine(SwitchOnLight(l));
             }
         }
-
     }
-    public void LightsOn(Light l)
+
+    IEnumerator SwitchOnLight(Light l)
     {
-        if (l.intensity < m_intensity)
+        while(l.intensity < m_intensity)
         {
-            l.gameObject.SetActive(true);
             l.intensity += (Time.deltaTime * m_speed);
-            return;
+            yield return new WaitForEndOfFrame();
         }
-        m_lights.Remove(l);
     }
 }
