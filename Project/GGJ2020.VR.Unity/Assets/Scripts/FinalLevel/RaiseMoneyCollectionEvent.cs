@@ -6,8 +6,14 @@ using System;
 public class RaiseMoneyCollectionEvent : MonoBehaviour
 {
 	public static Action collectMoney;
-	private void OnTriggerStay(Collider other)
+	//private void OnTriggerStay(Collider other)
+	//{
+	//	collectMoney?.Invoke();
+	//}
+
+	private void OnTriggerEnter(Collider other)
 	{
-		collectMoney?.Invoke();
+		if(other.tag == "Player")
+			collectMoney?.Invoke();
 	}
 }

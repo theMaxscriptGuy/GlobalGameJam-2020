@@ -20,7 +20,7 @@ public class Statistics : MonoBehaviour
     {
         stats.money = Random.Range(10, 100);
         stats.stress = 0;
-        stats.social = 0;
+        stats.social = Random.Range(10, 100);
         stats.life = Random.Range(70, 100);
 
         moneyGOMat = moneyGO.GetComponent<Renderer>().material;
