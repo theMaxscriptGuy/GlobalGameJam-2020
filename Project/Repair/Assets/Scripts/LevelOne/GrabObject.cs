@@ -7,10 +7,11 @@ public class GrabObject : MonoBehaviour
     [SerializeField]
     private GameObject hand;
     private GameObject currentSelection = null;
+    private Level1Validation val;
     // Start is called before the first frame update
     void Start()
     {
-        
+        val = GetComponent<Level1Validation>();
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class GrabObject : MonoBehaviour
             //p.transform.parent = ph.transform;
             p.transform.position = ph.transform.position;
             //p.transform.rotation = Quaternion.identity;
+            val.OnPieceAttached();
         }
-            
     }
 }
