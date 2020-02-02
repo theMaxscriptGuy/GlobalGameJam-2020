@@ -18,7 +18,7 @@ public class ObjectSpawner : MonoBehaviour
     private Vector2 limitScale;
 
     [SerializeField]
-    private int timeThreshold = 2;
+    private float timeThreshold = 2f;
     private float currentTime = 0f;
     // Start is called before the first frame update
     void Start()
@@ -30,8 +30,8 @@ public class ObjectSpawner : MonoBehaviour
     void Update()
     {
         yVal = Mathf.Lerp(limits.x, limits.y, Mathf.PingPong(Time.time, 1f));
-        originalTransform.z = yVal * Time.deltaTime * speed * 0.5f;
-        originalTransform.x = yVal * Time.deltaTime * speed;
+        //originalTransform.z = yVal * Time.deltaTime * speed * 0.5f;
+        originalTransform.x = yVal + (Time.deltaTime * speed);
         transform.position += originalTransform;
         
         //rotationAxis.x = Random.Range(0f, 1f);
