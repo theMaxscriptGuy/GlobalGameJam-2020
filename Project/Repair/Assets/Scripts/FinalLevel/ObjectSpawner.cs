@@ -30,7 +30,7 @@ public class ObjectSpawner : MonoBehaviour
     void Update()
     {
         yVal = Mathf.Lerp(limits.x, limits.y, Mathf.PingPong(Time.time, 1f));
-        originalTransform.z = yVal * Time.deltaTime * speed;
+        originalTransform.z = yVal * Time.deltaTime * speed * 0.5f;
         originalTransform.x = yVal * Time.deltaTime * speed;
         transform.position += originalTransform;
         
