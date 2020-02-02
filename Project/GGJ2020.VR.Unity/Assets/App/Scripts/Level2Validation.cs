@@ -3,28 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Level1Validation : MonoBehaviour
+public class Level2Validation : MonoBehaviour
 {
     public UnityEvent OnLevelComplete;
     public GameObject lifeLine;
 
-    public int totalPieces = 6;
-    public int piecesCollected = 0;
 
     public Material lifeMaterial;
-    public void OnPieceAttached()
-    {
-        piecesCollected++;
-        Debug.Log($"{piecesCollected} / {totalPieces} Collected!");
-
-        if (piecesCollected >= totalPieces)
-        {
-            Debug.Log($"All Pieces Collected!");
-
-            OnLevelComplete?.Invoke();
-            AppManager.Instance.SwitchState(AppStartedState.Instance);
-        }
-    }
+  
     // Start is called before the first frame update
     void Start()
     {

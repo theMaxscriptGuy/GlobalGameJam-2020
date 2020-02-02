@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelSelector : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,17 @@ public class LevelSelector : MonoBehaviour
     public void OnLevelSelected(int level)
     {
         Debug.Log($"Level Selected : {level}");
-        AppManager.Instance.SwitchState(Level1State.Instance);
+        switch (level)
+        {
+            case 1:
+                AppManager.Instance.SwitchState(Level1State.Instance);
+                break;
+            case 2:
+                AppManager.Instance.SwitchState(Level2State.Instance);
+                break;
+            default:
+                break;
+        }
+       
     }
 }
