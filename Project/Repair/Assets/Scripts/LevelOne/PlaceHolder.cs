@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaceHolder : MonoBehaviour
 {
     [SerializeField]
-    private int m_id;
+    public int m_id;
     // Start is called before the first frame update
     void Start()
     {

@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/TO_Delete/Scenes/Main_PC.unity
+    guid: e9bdfbb9350a4f147bd3242c79c251b4
+  - enabled: 1
+    path: Assets/TO_Delete/Level 1.unity
+    guid: 2402d98f7d1a2f649b6c570f680d0b3e
   m_configObjects: {}
